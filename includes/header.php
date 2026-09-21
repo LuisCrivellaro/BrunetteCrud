@@ -11,6 +11,8 @@ $active    = $active ?? '';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e($pageTitle) ?></title>
     <meta name="description" content="<?= e($pageDesc) ?>">
+    <link rel="icon" type="image/png" href="<?= e(asset('img/favicon.png')) ?>">
+    <link rel="apple-touch-icon" href="<?= e(asset('img/favicon.png')) ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,7 +25,7 @@ $active    = $active ?? '';
         <nav class="nav">
             <a href="<?= e(url('index.php#eventos')) ?>" class="<?= $active === 'eventos' ? 'is-active' : '' ?>">Eventos</a>
             <a href="<?= e(url('index.php#lugares')) ?>" class="<?= $active === 'lugares' ? 'is-active' : '' ?>">Lugares</a>
-            <a href="<?= e(url('admin/')) ?>" class="nav__admin">Admin</a>
+            <a href="<?= e(url('admin/login.php')) ?>" class="nav__admin">Login</a>
         </nav>
     </div>
 </header>

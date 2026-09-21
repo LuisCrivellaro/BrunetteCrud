@@ -106,10 +106,16 @@ function seed_demo(PDO $pdo): void
     ];
 
     $insPlace = $pdo->prepare(
-        'INSERT INTO establishments (name, type, neighborhood, address, opening_hours, instagram, description)
-         VALUES (?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO establishments (name, type, neighborhood, address, opening_hours, instagram, description, image)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
     );
+    // Fotos em uploads/ (nome do local => arquivo)
+    $placeImages = [
+        'Porão do Trajano' => 'porao-do-trajano.jpg',
+        'Bar do Largo'     => 'bar-do-largo.jpg',
+    ];
     foreach ($places as $p) {
+        $p[] = $placeImages[$p[0]] ?? null;
         $insPlace->execute($p);
     }
 
@@ -127,10 +133,21 @@ function seed_demo(PDO $pdo): void
     ];
 
     $insEvent = $pdo->prepare(
-        'INSERT INTO events (establishment_id, title, description, event_date, start_time, price, genre)
-         VALUES (?, ?, ?, ?, ?, ?, ?)'
+        'INSERT INTO events (establishment_id, title, description, event_date, start_time, price, genre, image)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
     );
+    // Fotos em uploads/ (título do evento => arquivo)
+    $eventImages = [
+        'Roda de Samba do Porão' => 'roda-de-samba-no-porao.jpg',
+        'Batel Sessions'         => 'batel-sessions.jpg',
+        'Sexta no Largo'         => 'sexta-no-largo.jpg',
+        'Noite do Rock Nacional' => 'noite-de-rock-nacional.jpg',
+        'Sunset no Jardim'       => 'sunset-no-jardim.jpg',
+        'Trivia Night'           => 'trivia-night.jpg',
+        'Pagode do Largo'        => 'pagode-do-largo.jpg',
+    ];
     foreach ($events as $e) {
+        $e[] = $eventImages[$e[1]] ?? null;
         $insEvent->execute($e);
     }
 }
